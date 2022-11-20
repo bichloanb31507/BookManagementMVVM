@@ -1,0 +1,90 @@
+﻿<Window x:Class="MVVMforWPF.CategoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMforWPF"
+        xmlns:uc="clr-namespace:MVVMforWPF.UserControlUI"
+        mc:Ignorable="d"
+        Title="CategoryWindow" Height="500" Width="400"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Name="categoryWindow"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource CategoryVM}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=categoryWindow}"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1" Background="WhiteSmoke">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <materialDesign:Card Grid.Row="0"
+                                 Margin="5">
+                <TextBox Margin="5" materialDesign:HintAssist.Hint="Name"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Row="1"
+                                 Margin="5">
+                <WrapPanel>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                            Width="100"
+                            ToolTip="Resource name: MaterialDesignRaisedButton"
+                            Content="ADD"
+                            Background="Black"
+                            Margin="5"
+                            Command="{Binding AddCommand}" />
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                            Width="100"
+                            ToolTip="Resource name: MaterialDesignRaisedButton"
+                            Content="UPDATE"
+                            Background="Black"
+                            Margin="5"
+                            Command="{Binding UpdateCommand}" />
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                            Width="100"
+                            ToolTip="Resource name: MaterialDesignRaisedButton"
+                            Content="DELETE"
+                            Background="Black"
+                            Margin="5" 
+                            Command="{Binding DeleteCommand}" />
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2"
+                                 Margin="5"
+                                 VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding Categories}"
+                              SelectedItem="{Binding Category, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="#"
+                                                DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                <GridViewColumn Header="Name"
+                                                DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>

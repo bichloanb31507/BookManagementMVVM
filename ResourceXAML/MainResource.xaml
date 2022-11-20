@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:MVVMforWPF.ViewModel">
+    <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
+    <viewmodel:CategoryViewModel x:Key="CategoryVM"></viewmodel:CategoryViewModel>
+    <viewmodel:AuthorViewModel x:Key="AuthorVM"></viewmodel:AuthorViewModel>
+    <viewmodel:CustomerViewModel x:Key="CustomerVM"></viewmodel:CustomerViewModel>
+    <viewmodel:SupplierViewModel x:Key="SupplierVM"></viewmodel:SupplierViewModel>
+    <viewmodel:BookViewModel x:Key="BookVM"></viewmodel:BookViewModel>
+</ResourceDictionary>

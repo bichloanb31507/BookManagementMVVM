@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLySach" Class="ShopDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ADMIN-PC\SQLEXPRESS;Initial Catalog=QuanLySach;Integrated Security=True" SettingsObjectName="MVVMforWPF.Properties.Settings" SettingsPropertyName="QuanLySachConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Author" Member="Authors">
+    <Type Name="Author">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MoreInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Author_Book" Member="Books" ThisKey="Id" OtherKey="IdAuthor" Type="Book" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Book" Member="Books">
+    <Type Name="Book">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdAuthor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdSupplier" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PublishingYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumberOfPages" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Book_InputInfo" Member="InputInfos" ThisKey="Id" OtherKey="IdBook" Type="InputInfo" />
+      <Association Name="Book_OutputInfo" Member="OutputInfos" ThisKey="Id" OtherKey="IdBook" Type="OutputInfo" />
+      <Association Name="Author_Book" Member="Author" ThisKey="IdAuthor" OtherKey="Id" Type="Author" IsForeignKey="true" />
+      <Association Name="Category_Book" Member="Category" ThisKey="IdCategory" OtherKey="Id" Type="Category" IsForeignKey="true" />
+      <Association Name="Supplier_Book" Member="Supplier" ThisKey="IdSupplier" OtherKey="Id" Type="Supplier" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Category_Book" Member="Books" ThisKey="Id" OtherKey="IdCategory" Type="Book" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MoreInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ContractDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_OutputInfo" Member="OutputInfos" ThisKey="Id" OtherKey="IdCustomer" Type="OutputInfo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Input" Member="Inputs">
+    <Type Name="Input">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DateInput" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Input_InputInfo" Member="InputInfos" ThisKey="Id" OtherKey="IdInput" Type="InputInfo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InputInfo" Member="InputInfos">
+    <Type Name="InputInfo">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdBook" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="IdInput" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InputPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="OutputPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="InputInfo_OutputInfo" Member="OutputInfos" ThisKey="Id" OtherKey="IdInputInfo" Type="OutputInfo" />
+      <Association Name="Input_InputInfo" Member="Input" ThisKey="IdInput" OtherKey="Id" Type="Input" IsForeignKey="true" />
+      <Association Name="Book_InputInfo" Member="Book" ThisKey="IdBook" OtherKey="Id" Type="Book" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Output" Member="Outputs">
+    <Type Name="Output">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DateOutput" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OutputInfo" Member="OutputInfos">
+    <Type Name="OutputInfo">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdBook" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="IdInputInfo" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="IdCustomer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Customer_OutputInfo" Member="Customer" ThisKey="IdCustomer" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="InputInfo_OutputInfo" Member="InputInfo" ThisKey="IdInputInfo" OtherKey="Id" Type="InputInfo" IsForeignKey="true" />
+      <Association Name="Book_OutputInfo" Member="Book" ThisKey="IdBook" OtherKey="Id" Type="Book" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Supplier" Member="Suppliers">
+    <Type Name="Supplier">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MoreInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ContractDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Supplier_Book" Member="Books" ThisKey="Id" OtherKey="IdSupplier" Type="Book" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRole" Member="UserRoles">
+    <Type Name="UserRole">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="UserRole_User" Member="Users" ThisKey="Id" OtherKey="IdRole" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="UserRole_User" Member="UserRole" ThisKey="IdRole" OtherKey="Id" Type="UserRole" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

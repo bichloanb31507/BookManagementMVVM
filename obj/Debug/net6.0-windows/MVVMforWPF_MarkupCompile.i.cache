@@ -1,0 +1,20 @@
+﻿MVVMforWPF
+1.0.0.0
+
+winexe
+C#
+.cs
+C:\Users\Bich Loan\source\repos\BookManagementMVVM\obj\Debug\net6.0-windows\
+MVVMforWPF
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+C:\Users\Bich Loan\source\repos\BookManagementMVVM\App.xaml
+91378268171
+
+39-1191927257
+2021250622124
+AuthorWindow.xaml;BookWindow.xaml;CategoryWindow.xaml;CustomerWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXAML\MainResource.xaml;SupplierWindow.xaml;UserControlUI\ControlBarUC.xaml;
+
+False
+
